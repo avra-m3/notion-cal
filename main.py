@@ -1,24 +1,26 @@
+import argparse
 import os
-from datetime import datetime
 
 from notion.client import NotionClient
 
-from ics_calendar import Calendar
 from database import CalendarDatabase
-
-__HOME__ = "https://www.notion.so/Get-Started-ccc857dcaab04948a66554fc2a09b4f7"
-__CALENDARS__ = "https://www.notion.so/6d96f527eae44188b87b653899ea6552?v=35592a53b5554541851ad8f1636a38c9"
+from ics_calendar import Calendar
 
 
-def get_reg_calendars(block) -> list:
-    return [
-        {"name": "Test", "values": []}
-    ]
+def get_args():
+    parser = argparse.ArgumentParser(
+        description="Sync calendars from CalDav format into notion")
+    parser.add_argument("notion_database",
+                        help="A url pointing to a notion database with a caldav_url, and auth field")
+    parser.add_argument("--token_v2", help="The notion token_v2, you can obtain this by looking at cookies while logged in.")
+    return parser.parse_args()
 
 
 def main():
-    notion = NotionClient(token_v2=os.getenv("NOTION_TOKEN_V2"))
-    calendar_view = notion.get_collection_view(__CALENDARS__)
+    args = get_args()
+
+    notion = NotionClient(token_v2=os.getenv("NOTION_TOKEN_V2", args.token_v2))
+    calendar_view = notion.get_collection_view(args.notion_database)
 
     for record in calendar_view.default_query().execute():
         name = ""

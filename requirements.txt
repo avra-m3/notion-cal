@@ -1,4 +1,6 @@
+# Temp replacement for notion while fix is merged
 git+https://github.com/evertheylen/notion-py.git
+# Uncomment once fix is merged
+#notion
 ics
 requests
-#notion
