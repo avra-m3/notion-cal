@@ -1,1 +1,4 @@
-notion
+git+https://github.com/evertheylen/notion-py.git
+ics
+requests
+#notion
