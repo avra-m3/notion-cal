@@ -20,14 +20,14 @@ Setup
 In order to run this script successfully, some work needs to be done.
 
 1. Create a new table in notion, add the following properties;
-    - Caldav URL
-    - Auth
-    - Last Sync
-    - Sync Result
+    - Caldav URL (Url Type)
+    - Auth (Text)
+    - Last Sync (Date)
+    - Sync Result (Text)
 
     You should have a table that looks like the one below.
     
-    (insert image)
+    
     
     Copy the link to this table, it'll be important in a second.
     
